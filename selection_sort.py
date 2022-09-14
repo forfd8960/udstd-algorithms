@@ -24,3 +24,13 @@ def selection_sort(arr):
 ## i = 1, min = 1, arr[1, 2, 6, 3, 9]
 ## i = 2, min = 3, arr[1, 2, 3, 6, 9]
 ## i = 3, min = 3, arr[1, 2, 3, 6, 9]
+
+"""
+>>> from selection_sort import selection_sort
+>>> selection_sort([3, 2, 6, 1, 9])
+i = 0, arr = [1, 2, 6, 3, 9]
+i = 1, arr = [1, 2, 6, 3, 9]
+i = 2, arr = [1, 2, 3, 6, 9]
+i = 3, arr = [1, 2, 3, 6, 9]
+[1, 2, 3, 6, 9]
+"""
