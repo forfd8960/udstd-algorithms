@@ -4,10 +4,10 @@ def selection_sort(arr):
     i = 0
     last_idx = len(arr) - 1
     
-    for i in range (0, last_idx):
+    for i in range(0, last_idx):
         min = i
         
-        for j in range (i+1, len(arr)):
+        for j in range(i+1, len(arr)):
             if arr[j] < arr[min]:
                 min = j
 
