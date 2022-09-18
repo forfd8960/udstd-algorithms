@@ -45,14 +45,15 @@ def DFS(g: Graph) -> list[int]:
     
     for vertex in g.vertices:
         node = vertex.get_node()
-        dfs(g, node, visited, dfs_result)
+        if visited.get(node.get_value()) is None:
+            dfs(g, node, visited, dfs_result)
 
     return dfs_result
 
 
-def dfs(g: Graph, node: Node, visited: dict[int, bool], result: list[int]):
+def dfs(g: Graph, node: Node, visited, result: list[int]):
     value = node.get_value()
-    if visited.get(value) is False:
+    if visited.get(value) is None:
         visited[value] = True
         result.append(value)
     
