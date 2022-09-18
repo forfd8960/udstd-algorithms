@@ -39,15 +39,18 @@ class LinkedList:
         self.tail.next = node
         self.tail = self.tail.next
         self.length += 1
-
-    def __str__(self) -> str:
+        
+    def iterate(self) -> list[Node]:
         nodes = []
         start = self.head
         while start != None:
             nodes.append(start.get_value())
             start = start.get_next()
-        
-        return '->'.join([str(x) for x in nodes])
+            
+        return nodes
+
+    def __str__(self) -> str:
+        return '->'.join([str(x) for x in self.iterate()])
 
 
 def select_sort_linked_list(ll: LinkedList) -> None:
