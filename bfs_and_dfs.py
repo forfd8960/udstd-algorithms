@@ -71,15 +71,36 @@ def BFS(graph: Graph) -> list[int]:
         return None
     
     visited = {}
-    dfs_result = []
+    bfs_result = []
     queue = []
     
     for vertex in graph.vertices:
         node = vertex.get_node()
-        if visited.get(node.get_value()) is None:
-            bfs(graph, node, visited, dfs_result, queue)
+        node_id = node.get_value()
+        
+        if visited.get(node_id) is None:
+            add_to_bfs_list(visited, node_id, queue, bfs_result)
+            
+            while len(queue) > 0:
+                n = queue[0]
+                queue = queue[1:]
+                idx = graph.vertex_dict.get(n)
+                if idx == None:
+                    continue
+                
+                vertex = graph.vertices[idx]
+                for adj in vertex.get_adjacents():
+                    adj_id = adj.get_value()
+                    if visited.get(adj_id) is None:
+                        add_to_bfs_list(visited, adj_id, queue, bfs_result)
 
-    return dfs_result
+    return bfs_result
+
+
+def add_to_bfs_list(visited, node_id, queue, bfs_result):
+    visited[node_id] = True
+    queue.append(node_id)
+    bfs_result.append(node_id)
 
 
 def bfs(g: Graph, node: Node, visited, result: list[int], queue: list[int]):
