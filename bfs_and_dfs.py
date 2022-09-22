@@ -20,7 +20,7 @@ class Vertex:
 
 class Graph:
     def __init__(self) -> None:
-        self.vertices = list[Vertex]
+        self.vertices = []
         self.vertex_dict = {}
     
     def add_edge(self, src: Node, adj: Node):
@@ -66,6 +66,36 @@ def dfs(g: Graph, node: Node, visited, result: list[int]):
         dfs(g, adj, visited, result)
 
 
+"""
+In [1]: from linked_list import Node
+
+In [2]: from bfs_and_dfs import Graph, BFS
+
+In [3]: g = Graph()
+
+In [4]: a, c, d, e, f, b = 1,2,3,5,6,9
+
+In [5]: g.add_edge(Node(a, None), Node(c, None))
+
+In [6]: g.add_edge(Node(a, None), Node(d, None))
+
+In [7]: g.add_edge(Node(a, None), Node(e, None))
+
+In [8]: g.add_edge(Node(e, None), Node(f, None))
+
+In [9]: g.add_edge(Node(e, None), Node(b, None))
+
+In [10]: g.vertex_dict
+Out[10]: {1: 0, 5: 1}
+
+In [11]: g.vertices
+Out[11]: [<bfs_and_dfs.Vertex at 0x1078919f0>, <bfs_and_dfs.Vertex at 0x1078933d0>]
+
+In [12]: 
+
+In [12]: BFS(g)
+Out[12]: [1, 2, 3, 5, 6, 9]
+"""
 def BFS(graph: Graph) -> list[int]:
     if graph is None:
         return None
