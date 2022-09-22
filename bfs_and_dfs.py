@@ -64,3 +64,39 @@ def dfs(g: Graph, node: Node, visited, result: list[int]):
     vertex = g.vertices[idx]
     for adj in vertex.get_adjacents():
         dfs(g, adj, visited, result)
+
+
+def BFS(graph: Graph) -> list[int]:
+    if graph is None:
+        return None
+    
+    visited = {}
+    dfs_result = []
+    queue = []
+    
+    for vertex in graph.vertices:
+        node = vertex.get_node()
+        if visited.get(node.get_value()) is None:
+            bfs(graph, node, visited, dfs_result, queue)
+
+    return dfs_result
+
+
+def bfs(g: Graph, node: Node, visited, result: list[int], queue: list[int]):
+    node_id = node.get_value()
+    if visited.get(node_id) is None:
+        visited[node_id] = True
+        queue.append(node_id)
+        result.append(node_id)
+    
+    idx = g.vertex_dict.get(node_id)
+    if idx == None:
+        return
+    
+    while len(queue) > 0:
+        vertex = g.vertices[idx]
+        for adj in vertex.get_adjacents():
+            bfs(g, adj, visited, result, queue)
+        
+        queue = queue[1:]
+
