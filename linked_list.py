@@ -185,29 +185,30 @@ class LinkedList:
         return '->'.join([str(x.get_value()) for x in self.iterate()])
 
 
-"""
-In [1]: from linked_list import LinkedList, Node, merge_sorted_linked_list
-
-In [2]: ll = LinkedList(None, 0)
-
-In [4]: ll.add_nodes([Node(1, None), Node(2, None),Node(3, None),Node(4, None)])
-
-In [5]: print(ll)
-1->2->3->4
-
-In [6]: ll1 = LinkedList(None, 0)
-
-In [7]: ll1.add_nodes([Node(3, None), Node(6, None),Node(9, None),Node(12, None), Node(15, None)])
-
-In [8]: print(ll1)
-3->6->9->12->15
-
-In [9]: new_ll = merge_sorted_linked_list(ll, ll1)
-
-In [10]: print(new_ll)
-1->2->3->3->4->6->9->12->15
-"""
 def merge_sorted_linked_list(l1: LinkedList, l2: LinkedList) -> LinkedList:
+    """
+    In [1]: from linked_list import LinkedList, Node, merge_sorted_linked_list
+
+    In [2]: ll = LinkedList(None, 0)
+
+    In [4]: ll.add_nodes([Node(1, None), Node(2, None),Node(3, None),Node(4, None)])
+
+    In [5]: print(ll)
+    1->2->3->4
+
+    In [6]: ll1 = LinkedList(None, 0)
+
+    In [7]: ll1.add_nodes([Node(3, None), Node(6, None),Node(9, None),Node(12, None), Node(15, None)])
+
+    In [8]: print(ll1)
+    3->6->9->12->15
+
+    In [9]: new_ll = merge_sorted_linked_list(ll, ll1)
+
+    In [10]: print(new_ll)
+    1->2->3->3->4->6->9->12->15
+    """
+    
     head1 = l1.get_head()
     head2 = l2.get_head()
     new_ll = LinkedList(None, 0)
