@@ -25,7 +25,7 @@ class LinkedList:
 
     def set_head(self, head: Node):
         self.head = head
-
+        
     def add(self, node: Node) -> None:
         """
         append node to this linked list
@@ -48,6 +48,25 @@ class LinkedList:
             start = start.get_next()
             
         return nodes
+    
+    def reverse(self):
+        if self.head is None:
+            return
+        
+        if self.head.next is None:
+            return
+        
+        tmp = self.head
+        tmp_next = self.head.next
+        self.tail = self.head
+        
+        while tmp_next != None:
+            temp = tmp_next.next
+            tmp_next.next = tmp
+            tmp, tmp_next = tmp_next, temp
+        
+        self.head = tmp
+        self.tail.next = None
 
     def __str__(self) -> str:
         return '->'.join([str(x.get_value()) for x in self.iterate()])

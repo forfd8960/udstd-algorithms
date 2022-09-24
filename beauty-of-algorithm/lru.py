@@ -9,7 +9,19 @@ class LRUCache:
         self.max_size = max_size
     
     def get(self, key: str):
-         return -1, False
+        start = self.ll.head
+        target_node = None
+        while start != None:
+            if key == start.get_value():
+                target_node = start
+                break
+            
+            start = start.get_next()
+            
+        if target_node is None:
+            return -1, False
+            
+        return -1, False
      
     def set(self, key: str, value: int) -> None:
          return None
