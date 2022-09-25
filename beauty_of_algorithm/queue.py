@@ -89,3 +89,60 @@ class Queue:
         self.head += 1
         return e
 
+
+class CircularQueue:
+    def __init__(self, cap: int) -> None:
+        self.cap = cap
+        self.elements = []
+        self.size = 0
+        for _ in range (0, cap):
+            self.elements.append(None)
+
+        self.head, self.tail = 0, 0
+        
+    def enqueue(self, e) -> bool:
+        # queue is full
+        if self.size == self.cap:
+            return False
+        
+        self.elements[self.tail] = e
+        self.size += 1
+        
+        if self.tail + 1 == self.cap:
+            self.tail = 0
+        else:
+            self.tail = (self.tail + 1) % self.cap
+        
+        return True
+    
+    #todo: fix dequeue bug
+    def dequeue(self):
+        if self.head == self.tail:
+            return None
+        
+        e = self.elements[self.head]
+        self.size -= 1
+        self.head = (self.head + 1) % self.cap
+        return e
+
+
+# class LinkedQueue:
+#     def __init__(self, cap) -> None:
+#         self.cap = cap
+#         self.ll = LinkedList(None, 0)
+
+#     def enqueue(self, e) -> bool:
+#         length = self.ll.get_length()
+#         if length >= self.cap:
+#             return False
+        
+#         self.ll.add(Node(e, None))
+#         return True
+        
+#     def dequeue(self):
+#         head = self.ll.head
+#         if head is None:
+#             return None
+        
+#         self.ll.move_head_to_next()
+#         return head.get_value()
