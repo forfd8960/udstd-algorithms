@@ -1,7 +1,4 @@
 
-from asyncio import proactor_events
-
-
 class Node:
     def __init__(self, value, next):
         self.value = value
@@ -32,6 +29,13 @@ class LinkedList:
     def set_head(self, head: Node):
         self.head = head
         
+    def move_head_to_next(self):
+        if self.head is None:
+            return
+        
+        self.head = self.head.next
+        self.length -= 1
+
     def get_head(self):
         return self.head
 
