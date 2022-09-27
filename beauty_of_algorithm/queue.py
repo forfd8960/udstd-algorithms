@@ -1,4 +1,3 @@
-
 class Queue:
     """
     In [1]: from beauty_of_algorithm.queue import Queue
@@ -94,35 +93,30 @@ class CircularQueue:
     def __init__(self, cap: int) -> None:
         self.cap = cap
         self.elements = []
-        self.size = 0
         for _ in range (0, cap):
             self.elements.append(None)
 
+        self.is_full = False
         self.head, self.tail = 0, 0
         
     def enqueue(self, e) -> bool:
         # queue is full
-        if self.size == self.cap:
+        if self.is_full:
             return False
         
         self.elements[self.tail] = e
-        self.size += 1
-        
-        if self.tail + 1 == self.cap:
-            self.tail = 0
-        else:
-            self.tail = (self.tail + 1) % self.cap
-        
+        self.tail = (self.tail + 1) % self.cap
+        self.is_full = self.tail == self.head
         return True
-    
-    #todo: fix dequeue bug
+
     def dequeue(self):
-        if self.head == self.tail:
+        if not self.is_full and self.head == self.tail:
             return None
         
         e = self.elements[self.head]
-        self.size -= 1
+        self.elements[self.head] = None
         self.head = (self.head + 1) % self.cap
+        self.is_full = False
         return e
 
 
