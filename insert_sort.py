@@ -11,13 +11,14 @@ def insert_sort(arr: list[int]):
         value = arr[i]
         
         pos = i - 1
-        for j in range(i-1, -1, -1):
-            if arr[j] > value:
-                arr[j+1] = arr[j]
+        while pos >= 0:
+            if arr[pos] > value:
+                arr[pos+1] = arr[pos]
+                print(f"   j = {pos}, value = {value}, arr = {arr}")
+                pos -= 1
             else:
-                pos = j
                 break
-        
         arr[pos+1] = value
-    
+        print(f"i = {i}, arr: {arr}")
+
     return arr
