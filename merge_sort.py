@@ -56,3 +56,14 @@ def merge_arr(arr1, arr2) -> list[int]:
             new_arr.append(arr2[idx])
 
     return new_arr
+
+
+def merge_sorted_arrs(arrs: list[list[int]]) -> list[int]:
+    if len(arrs) == 1:
+        return arrs[0]
+
+    result = merge_arr(arrs[0], arrs[1])
+    for idx in range(2, len(arrs)):
+        result = merge_arr(result, arrs[idx])
+        
+    return result
