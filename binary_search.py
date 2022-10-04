@@ -33,3 +33,72 @@ def my_sqrt(n) -> float:
         mid = (low + high) / 2
 
     return mid
+
+
+# Find the first idx for given value when there are repeated values in arr
+def binary_search_first_value(arr, value) -> int:
+    index = -1
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = low + ((high - low) >> 1)
+        if arr[mid] < value:
+            low = mid + 1
+        elif arr[mid] > value:
+            high = mid - 1
+        else:
+            if mid == 0 or arr[mid - 1] != value:
+                return mid
+
+            high = mid - 1
+
+    return index
+
+
+# find last idx for a given value
+def binary_search_last_value(arr, value) -> int:
+    index = -1
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = low + ((high - low) >> 1)
+        if arr[mid] < value:
+            low = mid + 1
+        elif arr[mid] > value:
+            high = mid - 1
+        else:
+            if mid == len(arr) - 1 or arr[mid + 1] != value:
+                return mid
+            
+            low = mid + 1
+
+    return index
+
+
+# Find the first index, which arr[index] >= value
+def binary_search_first_gte_value(arr, value) -> int:
+    index = -1
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = low + ((high - low) >> 1)
+        if arr[mid] >= value:
+            if mid == 0 or arr[mid - 1] < value:
+                return mid
+            high = mid - 1
+        else:
+            low = mid + 1
+        
+
+    return index
+
+
+# FInd the last index, which arr[index] <= value
+def binary_search_last_lte_value(arr, value) -> int:
+    index = -1
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = low + ((high - low) >> 1)
+        if arr[mid] <= value:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return index
