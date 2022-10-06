@@ -97,6 +97,9 @@ def binary_search_last_lte_value(arr, value) -> int:
     while low <= high:
         mid = low + ((high - low) >> 1)
         if arr[mid] <= value:
+            if mid == len(arr) -1 or arr[mid + 1] > value:
+                return mid
+
             low = mid + 1
         else:
             high = mid - 1
