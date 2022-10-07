@@ -7,6 +7,9 @@ class Node:
     def get_value(self) -> int:
         return self.value
     
+    def update_value(self, value):
+        self.value = value
+    
     def get_next(self):
         return self.next
     
@@ -53,6 +56,39 @@ class LinkedList:
         self.tail = self.tail.next
         self.length += 1
         
+    def remove(self, value) -> bool:
+        n = self.head
+        if self.head is None:
+            return False
+        
+        if self.head.value == value:
+            self.head = self.head.next
+            self.length -= 1
+            return True
+
+        prev = self.head
+        while n != None:
+            if n.value == value:
+                prev.next = n.next
+                if n.next is None:
+                    self.tail = prev
+
+                self.length -= 1
+                return True
+            prev = n
+            n = n.next
+  
+        return False
+
+    def find(self, value) -> Node:
+        node = self.head
+        while node != None:
+            if node.value == value:
+               return node
+            node = node.next
+        
+        return None
+
     def add_nodes(self, nodes: list[Node]) -> None:
         for node in nodes:
             self.add(node)
