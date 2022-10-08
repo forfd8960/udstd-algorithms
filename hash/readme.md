@@ -96,3 +96,51 @@ In [12]: v1
 In [13]: v1 is None
 Out[13]: True
 ```
+
+## Grow Hash
+
+```
+In [1]: from hash import KV, Hash
+
+In [2]: h = Hash(0.5, 2)
+
+In [3]: h.put("A", 1)
+grow hash to double size
+move bucket nodes: [A: 1] to new buckets
+Out[3]: True
+
+In [4]: h.bucket_size
+Out[4]: 1
+
+In [5]: h.put("B", 2)
+grow hash to double size
+move bucket nodes: [A: 1] to new buckets
+move bucket nodes: [B: 2] to new buckets
+Out[5]: True
+
+In [6]: h.bucket_size
+Out[6]: 2
+
+In [7]: len(h.buckets)
+Out[7]: 8
+
+In [8]: h.put("C", 3)
+Out[8]: True
+
+In [9]: h.put("D", 4)
+Out[9]: True
+
+In [10]: h.put("E", 9)
+grow hash to double size
+move bucket nodes: [A: 1] to new buckets
+move bucket nodes: [E: 9] to new buckets
+move bucket nodes: [C: 3]->[D: 4] to new buckets
+move bucket nodes: [B: 2] to new buckets
+Out[10]: True
+
+In [11]: h.bucket_size
+Out[11]: 4
+
+In [12]: len(h.buckets)
+Out[12]: 16
+```

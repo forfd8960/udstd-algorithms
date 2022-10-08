@@ -79,6 +79,9 @@ class LinkedList:
             n = n.next
   
         return False
+    
+    def is_empty(self) -> bool:
+        return self.head == None
 
     def find(self, value) -> Node:
         node = self.head
