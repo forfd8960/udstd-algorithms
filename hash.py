@@ -55,6 +55,7 @@ class Hash:
 
         new_buckets = [None for _ in range(0, len(self.buckets)*2)]
         new_length = len(new_buckets)
+        bucket_size = 0
         for bucket in self.buckets:
             if bucket is None:
                 continue
@@ -72,14 +73,12 @@ class Hash:
                 bucket = new_buckets[idx]
                 if bucket is None:
                     new_buckets[idx] = LinkedList(node, 1)
+                    bucket_size += 1
                 else:
                     bucket.add(node)
 
         self.buckets = new_buckets
-        self.bucket_size = len(self.buckets)
-        for bucket in self.buckets:
-            if bucket is None:
-                self.bucket_size -= 1
+        self.bucket_size = bucket_size
 
     def get(self, key) -> tuple:
         idx = hash(key) % len(self.buckets)
@@ -95,7 +94,9 @@ class Hash:
     def remove(self, key) -> bool:
         idx = hash(key) % len(self.buckets)
         bucket = self.buckets[idx]
-        
+        if bucket is None:
+            return False
+
         kv = KV(key, None)
         ok = bucket.remove(kv)
         if ok and bucket.is_empty():
